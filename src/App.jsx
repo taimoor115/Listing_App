@@ -25,7 +25,7 @@ const App = () => {
       <div className="h-screen lg:w-3/4">
         <div className="sticky top-0 z-50">
           <h1 className="text-4xl text-white text-center mt-3 font-bold ">
-            Todo List app
+            Todo List App
           </h1>
 
           <form
@@ -58,6 +58,7 @@ const App = () => {
               <Button name="Add" className="btn btn-wide btn-primary" />
             </div>
           </form>
+
           <TodoList />
         </div>
       </div>

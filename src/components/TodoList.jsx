@@ -21,7 +21,7 @@ const TodoList = () => {
   return (
     <div>
       {todos.length !== 0 ? (
-        <div className="text-white font-bold text-center">
+        <div className="text-white font-bold text-center p-4">
           <table className="w-full">
             <thead>
               <tr>
@@ -70,7 +70,7 @@ const TodoList = () => {
           </table>
         </div>
       ) : (
-        <div className="text-white font-bold">No Todos Found ...</div>
+        <div className="text-white font-bold p-3">No Todos Found ...</div>
       )}
 
       <TotalPrice />
