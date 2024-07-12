@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import TodoList from "./components/TodoList";
 import Button from "./components/Button";
 import Input from "./components/Input";
+import Search from "./components/Search";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -59,6 +60,9 @@ const App = () => {
             </div>
           </form>
 
+          <div className="flex justify-end">
+            <Search />
+          </div>
           <TodoList />
         </div>
       </div>

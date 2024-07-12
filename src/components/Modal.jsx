@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { updateTodo } from "../store/features/todoSlice";
 import Button from "./Button";
 import Input from "./Input";
+import { BiEdit } from "react-icons/bi";
 
 const Modal = ({ todo }) => {
   const dispatch = useDispatch();
@@ -39,7 +40,7 @@ const Modal = ({ todo }) => {
         className="btn btn-success btn-sm"
         onClick={() => handleModalOpen(todo.id, todo.name, todo.price)}
       >
-        Update
+        <BiEdit />
       </button>
       {modalOpen && updatedFormData.id === todo.id && (
         <dialog open className="modal">

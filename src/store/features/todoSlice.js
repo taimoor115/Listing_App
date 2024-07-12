@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   todos: [],
+  search: "",
 };
 
 const todoSlice = createSlice({
@@ -28,8 +29,14 @@ const todoSlice = createSlice({
         todo.price = action.payload.price;
       }
     },
+
+    search(state, action) {
+      state.search = action.payload;
+      return;
+    },
   },
 });
 
-export const { add, remove, toggleChecked, updateTodo } = todoSlice.actions;
+export const { add, remove, toggleChecked, updateTodo, search } =
+  todoSlice.actions;
 export default todoSlice.reducer;

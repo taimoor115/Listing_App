@@ -7,13 +7,19 @@ import Modal from "./Modal";
 
 const TodoList = () => {
   const dispatch = useDispatch();
-  const { todos } = useSelector((state) => state.todo);
+  const { todos, search } = useSelector((state) => state.todo);
+  console.log("Hello search", search);
+
+  const filterItems = search
+    ? todos.filter((todo) =>
+        todo.name.toLowerCase().includes(search.toLowerCase())
+      )
+    : todos;
 
   const handleRemove = (id) => {
     dispatch(remove(id));
     toast.success("Todo deleted Successfully....");
   };
-
   const handleChecked = (id) => {
     dispatch(toggleChecked(id));
   };
@@ -25,16 +31,22 @@ const TodoList = () => {
           <table className="w-full">
             <thead>
               <tr>
+                <th className="bg-primary">Completed</th>
                 <th className="bg-primary">Todo</th>
                 <th className="bg-primary">Price</th>
-                <th className="bg-primary">Completed</th>
-                <th className="bg-primary">Remove</th>
-                <th className="bg-primary">Update</th>
+                <th className="bg-primary">Action</th>
               </tr>
             </thead>
             <tbody>
-              {todos.map((todo) => (
+              {filterItems.map((todo) => (
                 <tr key={todo.id}>
+                  <td>
+                    <input
+                      type="checkbox"
+                      checked={todo.checked}
+                      onChange={() => handleChecked(todo.id)}
+                    />
+                  </td>
                   <td
                     style={{
                       textDecoration: todo.checked ? "line-through" : "none",
@@ -49,19 +61,11 @@ const TodoList = () => {
                   >
                     {todo.price}
                   </td>
-                  <td>
-                    <input
-                      type="checkbox"
-                      checked={todo.checked}
-                      onChange={() => handleChecked(todo.id)}
-                    />
-                  </td>
-                  <td>
+
+                  <td className="flex justify-center gap-6">
                     <button onClick={() => handleRemove(todo.id)}>
                       <CgClose className="text-xl text-red-600 font-extrabold" />
                     </button>
-                  </td>
-                  <td>
                     <Modal todo={todo} />
                   </td>
                 </tr>
