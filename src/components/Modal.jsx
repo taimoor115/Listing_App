@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateTodo } from "../store/features/todoSlice";
+import Button from "./Button";
+import Input from "./Input";
 
 const Modal = ({ todo }) => {
   const dispatch = useDispatch();
@@ -45,9 +47,9 @@ const Modal = ({ todo }) => {
             <h3 className="font-extrabold text-2xl text-center">Update Todo</h3>
             <div className="modal-action">
               <form className="space-y-4" onSubmit={handleModalSubmit}>
-                <input
+                <Input
                   type="text"
-                  className="input input-bordered input-primary w-full max-w-xs"
+                  placeholder="Name"
                   value={updatedFormData.name}
                   onChange={(e) =>
                     setUpdatedFormData({
@@ -55,30 +57,27 @@ const Modal = ({ todo }) => {
                       name: e.target.value,
                     })
                   }
-                  required
-                  placeholder="Name"
                 />
-                <input
+
+                <Input
                   type="number"
+                  min={1}
+                  placeholder="Price"
                   value={updatedFormData.price}
-                  className="input input-bordered input-primary w-full max-w-xs"
                   onChange={(e) =>
                     setUpdatedFormData({
                       ...updatedFormData,
                       price: parseInt(e.target.value),
                     })
                   }
-                  required
-                  placeholder="Price"
                 />
                 <div className="flex justify-evenly">
-                  <button className="btn btn-primary">Submit</button>
-                  <button
+                  <Button name="Submit" className="btn btn-primary" />
+                  <Button
                     className="btn btn-neutral"
+                    name="Cancel"
                     onClick={handleModalClose}
-                  >
-                    Cancel
-                  </button>
+                  />
                 </div>
               </form>
             </div>

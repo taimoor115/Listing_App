@@ -5,10 +5,11 @@ import "./App.css";
 import { add } from "./store/features/todoSlice";
 import toast from "react-hot-toast";
 import TodoList from "./components/TodoList";
+import Button from "./components/Button";
+import Input from "./components/Input";
 
 const App = () => {
   const dispatch = useDispatch();
-
   const [formData, setFormData] = useState({ name: "", price: "" });
 
   const handleAdd = (e) => {
@@ -32,34 +33,29 @@ const App = () => {
             className="grid grid-cols-1 md:grid-cols-3 gap-4 my-5 justify-center"
           >
             <div className="justify-center flex">
-              <input
+              <Input
                 type="text"
-                className="input input-bordered input-primary w-full max-w-xs"
-                placeholder=" Name"
+                placeholder="Name"
                 value={formData.name}
                 onChange={(e) =>
                   setFormData({ ...formData, name: e.target.value })
                 }
-                required
               />
             </div>
 
             <div className="justify-center flex">
-              <input
+              <Input
                 type="number"
-                className="input input-bordered input-primary w-full max-w-xs"
                 placeholder="Price"
                 value={formData.price}
                 onChange={(e) =>
                   setFormData({ ...formData, price: parseInt(e.target.value) })
                 }
-                required
+                min={1}
               />
             </div>
             <div className="flex justify-center">
-              <button type="submit" className="btn btn-wide btn-primary ">
-                Add
-              </button>
+              <Button name="Add" className="btn btn-wide btn-primary" />
             </div>
           </form>
           <TodoList />
