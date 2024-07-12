@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 const TotalPrice = () => {
   const { todos } = useSelector((state) => state.todo);
 
-  const priceArr = todos.map((todo) => todo.price);
-  const totalPrice = priceArr.reduce((acc, cur) => acc + cur, 0);
+  const priceArr = todos?.map((todo) => todo.price);
+  const totalPrice = priceArr?.reduce((acc, cur) => acc + cur, 0);
   return (
     <div>
       {totalPrice !== 0 && (

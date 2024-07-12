@@ -37,10 +37,10 @@ const Modal = ({ todo }) => {
   return (
     <div>
       <button
-        className="btn btn-success btn-sm"
+        className="btn btn-neutral btn-sm"
         onClick={() => handleModalOpen(todo.id, todo.name, todo.price)}
       >
-        <BiEdit />
+        <BiEdit className="text-white text-lg " />
       </button>
       {modalOpen && updatedFormData.id === todo.id && (
         <dialog open className="modal">

@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   todos: [],
+  filteredData: [],
   search: "",
 };
 
@@ -11,6 +12,7 @@ const todoSlice = createSlice({
   reducers: {
     add(state, action) {
       state.todos.push(action.payload);
+      state.filteredData = [...state.todos];
     },
     remove(state, action) {
       state.todos = state.todos.filter((item) => item.id !== action.payload);
@@ -29,14 +31,25 @@ const todoSlice = createSlice({
         todo.price = action.payload.price;
       }
     },
-
     search(state, action) {
       state.search = action.payload;
-      return;
+    },
+
+    filter(state, action) {
+      const { payload } = action;
+      if (payload === "asc") {
+        state.todos.sort((a, b) => a.price - b.price);
+      } else if (payload === "des") {
+        state.todos.sort((a, b) => b.price - a.price);
+      } else if (payload === "reset") {
+        console.log(state.todos);
+        state.todos = [...state.filteredData];
+      }
     },
   },
 });
 
-export const { add, remove, toggleChecked, updateTodo, search } =
+export const { add, remove, toggleChecked, updateTodo, search, filter } =
   todoSlice.actions;
+
 export default todoSlice.reducer;
